@@ -60,16 +60,16 @@ def two(btn):
     x = btn.x + btn.width/4
     y = btn.y + btn.height/4
     pg.draw.circle(screen, BLACK, (x, y), 10, 3)
-    
-def three(btn):
     x = btn.x + 3*btn.width/4
     y = btn.y + 3*btn.height/4
     pg.draw.circle(screen, BLACK, (x, y), 10, 3)
+
+def three(btn):
+    one(btn)
+    two(btn)
+    pg.draw(screen, BLACK, (x, y), 10, 3)
+
     
-def four(btn):
-    x = btn.x + 4*btn.width
-    y = btn.y + 4*btn.height
-    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
     
 running = True
 while running:
@@ -89,14 +89,11 @@ while running:
     one(btn_no)
     two(btn_yes)
     two(btn_no)
-    three(btn_no)
     three(btn_yes)
-    four(btn_no)
-    four(btn_yes)
+    three(btn_no)
     pg.display.update()
 
 
 
 pg.quit()
     
-

@@ -67,9 +67,10 @@ def two(btn):
 def three(btn):
     one(btn)
     two(btn)
-    pg.draw(screen, BLACK, (x, y), 10, 3)
-
     
+    
+
+        
     
 running = True
 while running:
@@ -91,6 +92,8 @@ while running:
     two(btn_no)
     three(btn_yes)
     three(btn_no)
+    
+    
     pg.display.update()
 
 

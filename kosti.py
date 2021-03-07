@@ -68,9 +68,17 @@ def three(btn):
     one(btn)
     two(btn)
     
-    
+def four(btn):
+    one(btn)
+    three(btn)
 
-        
+def five(btn):
+    one(btn)
+    four(btn)
+
+def six(btn):
+    one(btn)
+    five(btn)
     
 running = True
 while running:
@@ -86,12 +94,7 @@ while running:
     
     btn_yes.draw(screen)
     btn_no.draw(screen)
-    one(btn_yes)
-    one(btn_no)
-    two(btn_yes)
-    two(btn_no)
-    three(btn_yes)
-    three(btn_no)
+    
     
     
     pg.display.update()

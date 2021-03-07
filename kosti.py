@@ -3,15 +3,14 @@ import random as rnd
 
 FPS = 60
 
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
 class Window:
     width = 640
     height = 480
     center_x = width/2
     center_y = height/2
-
-pg.init()
-screen = pg.display.set_mode((Window.width, Window.height))
-clock = pg.time.Clock()
 
 class Button:
     mouseIsOver = False
@@ -35,51 +34,60 @@ class Button:
     def jumpto(self, x, y):
         self.x = x
         self.y = y
+        
+def one(cube):
+    x = cube.x + cube.width/2
+    y = cube.y + cube.height/2
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
     
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+def two(cube):
+    x = cube.x + cube.width/4
+    y = cube.y + cube.height/4
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
+    x = cube.x + 3*cube.width/4
+    y = cube.y + 3*cube.height/4
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
 
+def three(cube):
+    two(cube)
+    one(cube)
+    
+def four(cube):
+    two(cube)
+    x = cube.x + 3*cube.width/4
+    y = cube.y + cube.height/4
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
+    x = cube.x + cube.width/4
+    y = cube.y + 3*cube.height/4
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
+
+def five(cube):
+    one(cube)
+    four(cube)
+
+def six(cube):
+    four(cube)
+    x = cube.x + cube.width/4
+    y = cube.y + cube.height/2
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
+    x = cube.x + 3*cube.width/4
+    y = cube.y + cube.height/2
+    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
+        
+pg.init()
+screen = pg.display.set_mode((Window.width, Window.height))
+clock = pg.time.Clock()
 Button.width = 160
 Button.height = 160
 distance_to_center_x = 30
 view_x = Window.center_x - Button.width - distance_to_center_x
 view_y = Window.center_y - Button.height/2 # px
 
-btn_yes = Button(BLACK, view_x, view_y, Button.width, Button.height)
-btn_no = Button(BLACK, view_x + Button.width + distance_to_center_x*2, \
+cube_left = Button(BLACK, view_x, view_y, Button.width, Button.height)
+cube_right = Button(BLACK, view_x + Button.width + distance_to_center_x*2, \
                 view_y, Button.width, Button.height)
 
 
-    
-def one(btn):
-    x = btn.x + btn.width/2
-    y = btn.y + btn.height/2
-    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
-    
-def two(btn):
-    x = btn.x + btn.width/4
-    y = btn.y + btn.height/4
-    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
-    x = btn.x + 3*btn.width/4
-    y = btn.y + 3*btn.height/4
-    pg.draw.circle(screen, BLACK, (x, y), 10, 3)
-
-def three(btn):
-    one(btn)
-    two(btn)
-    
-def four(btn):
-    one(btn)
-    three(btn)
-
-def five(btn):
-    one(btn)
-    four(btn)
-
-def six(btn):
-    one(btn)
-    five(btn)
-    
 running = True
 while running:
     clock.tick(FPS)
@@ -92,10 +100,21 @@ while running:
     
     
     
-    btn_yes.draw(screen)
-    btn_no.draw(screen)
+    cube_left.draw(screen)
+    cube_right.draw(screen)
     
-    
+    one(cube_left)
+    one(cube_right)
+    two(cube_left)
+    two(cube_right)
+    three(cube_left)
+    three(cube_right)
+    four(cube_left)
+    four(cube_right)
+    five(cube_left)
+    five(cube_right)
+    six(cube_left)
+    six(cube_right)
     
     pg.display.update()
 
